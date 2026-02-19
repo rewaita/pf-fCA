@@ -1,0 +1,1176 @@
+/* ==========================================================================
+   BASE STYLES & VARIABLES
+   ========================================================================== */
+:root {
+    --primary-color: #1a1a2e;
+    --secondary-color: #16213e;
+    --yelloww: rgb(230, 230, 0);
+    --greenn: rgba(40, 255, 205, 0.3);
+    --accent-gradient: linear-gradient(135deg, rgb(230, 230, 0) 0%, rgb(0, 0, 0) 100%);
+    --text-color: #eee;
+    --text-muted: #aaa;
+    --bg-dark: #010000;
+    --bg-light: #2d2d2d;
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --slope: 50px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans JP', 'Arial', sans-serif;
+    line-height: 1.8;
+    color: var(--text-color);
+    background-color: var(--bg-dark);
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   FIXED NAVIGATION
+   ========================================================================== */
+.fixed-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: rgba(5,5,5, 0.9);
+    transform: translateY(-100%);
+    transition: var(--transition-smooth);
+    border-bottom: 1px solid rgba(233, 69, 96, 0.2);
+}
+.fixed-nav.visible {
+    transform: translateY(0);
+}
+.fixed-nav.hidden {
+    transform: translateY(-100%);
+}
+
+.nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--yelloww);
+    text-decoration: none;
+    letter-spacing: 3px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--yelloww);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.nav-hamburger span {
+    width: 25px;
+    height: 2px;
+    background: var(--text-color);
+    transition: var(--transition-smooth);
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(15, 15, 26, 0.98);
+        padding: 20px;
+        gap: 15px;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition-smooth);
+    }
+    
+    .fixed-nav.menu-open .nav-links {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .nav-hamburger {
+        display: flex;
+    }
+}
+
+/* ==========================================================================
+   IMAGE POPUP OVERLAY
+   ========================================================================== */
+.image-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+}
+
+.image-popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-image {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    transition: transform 0.4s ease;
+}
+
+.image-popup-overlay.active .popup-image {
+    transform: scale(1);
+}
+
+.popup-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 3rem;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.popup-close:hover {
+    color: var(--yelloww);
+    transform: rotate(90deg);
+}
+
+.popup-nav {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+}
+
+.popup-prev, .popup-next {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.popup-prev:hover, .popup-next:hover {
+    background: var(--yelloww);
+    border-color: var(--yelloww);
+}
+
+/* ==========================================================================
+   HERO SECTION - SKEWED DESIGN
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(3px);
+    transform: scale(1.1);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        rgba(15, 15, 26, 0.3) 0%,
+        rgba(15, 15, 26, 0.6) 50%,
+        rgba(15, 15, 26, 0.95) 100%
+    );
+}
+
+
+
+.hero-content {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+}
+
+.hero-category {
+    display: inline-block;
+    padding: 8px 30px;
+    background: var(--yelloww);
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    transform: skewX(-8deg);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+}
+
+.hero-category span {
+    display: inline-block;
+    transform: skewX(8deg);
+}
+
+.hero-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    letter-spacing: 8px;
+    margin-bottom: 15px;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.hero-catch {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    transform: skewX(-3deg);
+}
+
+/* ==========================================================================
+   WORK CONTAINER & SECTIONS
+   ========================================================================== */
+.work-container {
+    max-width: 100%;
+    margin: 0 auto;
+    background: var(--bg-dark);
+}
+
+.section-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: var(--yelloww);
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-label::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--yelloww);
+}
+
+.section-label.light {
+    color: #fff;
+}
+
+.section-label.light::after {
+    background: #fff;
+}
+
+/* ==========================================================================
+   INFO SECTION - SKEWED TRAPEZOID
+   ========================================================================== */
+.info {
+    background: var(--bg-light);
+    padding: 100px 20px 120px;
+    position: relative;
+    margin-top: -40px;
+    transform-origin: 0 0;
+    clip-path: polygon(
+        0% var(--slope),
+        100% 0%,
+        100% 100%,
+        0% 100%
+    );
+}
+
+.info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(230, 230, 96, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* 斜めの装飾アクセント */
+.info::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 6px;
+    height: 100px;
+    background: var(--yelloww);
+    transform: skewY(0deg);
+}
+
+.info-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    transform: skewY(0deg);
+}
+
+.concept {
+    font-size: 1.05rem;
+    line-height: 2;
+    color: var(--text-color);
+}
+
+/* ==========================================================================
+   GALLERY / SLIDER - TRAPEZOID DESIGN
+   ========================================================================== */
+.slider-container {
+    position: relative;
+    width: 100%;
+    background: var(--bg-dark);
+    perspective: 1500px;
+    height: 520px;
+    padding: 60px 0 40px;
+    margin-top: -60px;
+    overflow: hidden;
+    clip-path: polygon(
+        0% var(--slope),
+        100% 0%,
+        100% 100%,
+        0% 100%
+    );
+}
+
+/* グラデーションオーバーレイ */
+.slider-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(233, 69, 96, 0.1) 0%, transparent 40%, rgba(15, 52, 96, 0.15) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.gallery-title {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%) skewX(-5deg);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: var(--yelloww);
+    z-index: 20;
+    padding: 5px 20px;
+    border-left: 3px solid var(--yelloww);
+}
+
+.gallery-hint {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    z-index: 20;
+}
+
+.slider-wrapper {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    transform-style: preserve-3d;
+}
+
+.slide {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    max-width: 85%;
+    height: auto;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+    border-radius: 4px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.slide:hover {
+    box-shadow: 5px 25px 60px rgba(230, 230, 100, 0.2);
+}
+
+.leftB, .rightB {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leftB:hover, .rightB:hover {
+    background: var(--yelloww);
+    border-color: var(--yelloww);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.leftB { left: 20px; }
+.rightB { right: 20px; }
+
+/* ==========================================================================
+   TECH SECTION - SKEWED DESIGN
+   ========================================================================== */
+.tech {
+    background: var(--bg-light);
+    padding: 100px 20px 150px;
+    margin-top: -30px;
+    position: relative;
+    transform-origin: 100% 0;
+    clip-path: polygon(
+        0% 0%,
+        100% var(--slope),
+        100% 100%,
+        0% 100%
+    );
+}
+
+.tech::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6px;
+    height: 100px;
+    background: var(--yelloww);
+}
+
+.tech-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom:50px;
+}
+
+.tech-memo {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--text-color);
+    margin-bottom: 40px;
+}
+
+.tech-specs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.tech-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 25px;
+    background: var(--bg-dark);
+    border: 1px solid rgba(255, 255, 255, 0);
+    transform: skewX(-4deg);
+    box-shadow: 5px 5px 0 rgba(230,230,0,0.7);
+}
+
+.tech-item > * {
+    transform: skewX(4deg);
+}
+
+.tech-detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.tech-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+}
+
+.tech-value {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* ==========================================================================
+   WORKFLOW SECTION - TRAPEZOID DESIGN
+   ========================================================================== */
+.workflow {
+    width: 100%;
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    padding: 80px 0 60px;
+    margin-top: -60px;
+    overflow: hidden;
+    position: relative;
+    clip-path: polygon(
+        0% 0%,
+        100% var(--slope),
+        100% 100%,
+        0% 100%
+    );
+}
+
+/* 装飾的な斜線パターン */
+.workflow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 50px,
+        rgba(233, 233, 96, 0.03) 50px,
+        rgba(15, 15, 15, 0.03) 100px
+    );
+    pointer-events: none;
+}
+
+.workflow-container {
+    width: 100%;
+    height: 550px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    padding: 180px 20px 0 20px;
+    margin-top: -160px;
+    position: relative;
+    z-index: 10;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.wf-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0 50vw;
+    width: max-content;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+.wf-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+    height: 200px;
+}
+
+.wf-step {
+    position: static;
+    z-index: 10;
+}
+
+.step-content {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 18px 25px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    min-width: 100px;
+    backdrop-filter: blur(10px);
+    transform: skewX(-6deg);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.step-content:hover {
+    background: var(--yelloww);
+    border-color: var(--yelloww);
+    transform: skewX(-6deg) translateY(-3px);
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.4);
+}
+
+.step-label {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    display: inline-block;
+    transform: skewX(6deg);
+}
+
+.wf-arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 12px solid var(--yelloww);
+    border-right: 0;
+    margin: 0 15px;
+    opacity: 0.7;
+    transform: skewX(-6deg);
+}
+
+.wf-popup {
+    position: absolute;
+    left: -250%;
+    top: -170px;
+    height: 600px;
+    width: 280px;
+    transform: translateX(-100%) skewX(-3deg);
+    background: var(--bg-dark);
+    padding: 20px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+    box-shadow: 8px 8px 0 rgba(233, 69, 96, 0.3);
+    pointer-events: none;
+    border: 1px solid rgba(233, 69, 96, 0.3);
+}
+
+.wf-step:hover .wf-popup {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0) skewX(-3deg);
+}
+
+.wf-popup img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    transform: skewX(3deg);
+}
+
+.wf-popup h4 {
+    margin: 0 0 10px 0;
+    color: var(--yelloww);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    transform: skewX(3deg);
+}
+
+.wf-popup p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    transform: skewX(3deg);
+}
+
+/* ==========================================================================
+   PLAY SECTION - LAYERED TRAPEZOIDS
+   ========================================================================== */
+.play-section {
+    position: relative;
+    padding: 140px 20px 160px;
+    text-align: center;
+    overflow: hidden;
+    margin-top: -60px;
+    clip-path: polygon(
+        0% 0%,
+        100% var(--slope),
+        100% 100%,
+        0% 100%
+    );
+}
+
+/* 複数の斜めレイヤー */
+.play-section::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--yelloww) 0%, #0f3460 100%);
+    clip-path: polygon(
+        0% 0%,
+        100% var(--slope),
+        100% 100%,
+        0% 100%
+    );
+    z-index: -3;
+}
+
+.play-section::after {
+    content: '';
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 40px);
+    background: rgba(0, 0, 0, 0.2);
+    clip-path: polygon(
+        0% calc(var(--slope) - 10px),
+        100% 0%,
+        100% 100%,
+        0% 100%
+    );
+    z-index: -2;
+}
+
+/* 追加の装飾レイヤー */
+.play-section .play-layer {
+    position: absolute;
+    top: 170px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 100px);
+    background: rgba(0, 0, 0, 0.15);
+    clip-path: polygon(
+        0% 0%,
+        100% calc(var(--slope) - 20px),
+        100% 100%,
+        0% 100%
+    );
+    z-index: -1;
+}
+
+.play-inner {
+    position: relative;
+    z-index: 1;
+}
+
+.play-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 5px;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.8);
+    transform: skewX(-3deg);
+}
+
+.play-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 50px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(10px);
+    transform: skewX(-5deg);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.play-button:hover {
+    background: #fff;
+    color: var(--yelloww);
+    transform: skewX(-5deg) translateY(-5px);
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3);
+}
+
+.play-icon {
+    font-size: 1.5rem;
+    display: inline-block;
+    transform: skewX(5deg);
+}
+
+.play-text {
+    display: inline-block;
+    transform: skewX(5deg);
+}
+
+.play-url {
+    margin-top: 25px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    transform: skewX(-2deg);
+}
+
+/* ==========================================================================
+   NEXT PROJECT SECTION - SKEWED DESIGN
+   ========================================================================== */
+.next-project {
+    background: var(--bg-light);
+    padding: 100px 20px 120px;
+    margin-top: -40px;
+    position: relative;
+    clip-path: polygon(
+        0% calc(var(--slope) - 10px),
+        100% 0%,
+        100% 100%,
+        0% 100%
+    );
+}
+
+.next-project::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--yelloww), transparent);
+}
+
+.next-project-inner {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+.next-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 20px;
+}
+
+.next-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 30px;
+    padding: 30px 50px;
+    background: var(--bg-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    transform: skewX(-5deg);
+    box-shadow: 6px 6px 0 rgba(230, 230, 0, 0.7);
+}
+
+.next-link:hover {
+    border-color: var(--yelloww);
+    transform: skewX(-5deg) translateX(10px);
+    box-shadow: 10px 10px 0 var(--yelloww);
+}
+
+.next-link > * {
+    transform: skewX(5deg);
+}
+
+.next-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: 3px;
+}
+
+.next-category {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+}
+
+.next-arrow {
+    font-size: 2rem;
+    color: var(--yelloww);
+    transition: transform 0.3s ease;
+}
+
+.next-link:hover .next-arrow {
+    transform: skewX(5deg) translateX(10px);
+}
+
+.more-projects {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.more-projects h3 {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.project-thumb {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 25px 20px;
+    background: var(--bg-dark);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-decoration: none;
+    color: var(--text-color);
+    transition: var(--transition-smooth);
+    transform: skewX(-3deg);
+    box-shadow: 4px 4px 0 rgba(230, 230, 0, 0.5);
+}
+
+.project-thumb:hover {
+    border-color: var(--yelloww);
+    transform: skewX(-3deg) translateY(-5px);
+    box-shadow: 6px 6px 0 var(--yelloww);
+}
+
+.project-thumb > * {
+    transform: skewX(3deg);
+}
+
+.project-cat {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   FOOTER - SKEWED DESIGN
+   ========================================================================== */
+.site-footer {
+    background: var(--bg-dark);
+    padding: 50px 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-top: -20px;
+}
+
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    clip-path: polygon(
+        0% 30px,
+        100% 0%,
+        100% 100%,
+        0% 100%
+    );
+    z-index: -1;
+}
+
+.footer-home {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+    padding: 10px 25px;
+    background: rgba(230, 230, 0, 0.1);
+    transform: skewX(-5deg);
+    border: 3px solid rgba(230, 230, 0, 0);
+    border-left-color: var(--yelloww);
+    border-radius: 2px;
+}
+
+.footer-home:hover {
+    color: var(--yelloww);
+    border: 3px solid var(--yelloww);
+}
+
+.footer-copy {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    transform: skewX(-3deg);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 50vh;
+        min-height: 400px;
+    }
+    
+    .hero-title {
+        letter-spacing: 4px;
+    }
+    
+    .info, .tech {
+        padding: 50px 15px;
+    }
+    
+    .slider-container {
+        height: 400px;
+    }
+    
+    .slide {
+        width: 300px;
+    }
+    
+    .tech-specs {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .site-footer {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .next-link {
+        flex-direction: column;
+        gap: 15px;
+        padding: 25px;
+    }
+    
+    .play-button {
+        padding: 15px 35px;
+        font-size: 1rem;
+    }
+}
+
+/* ==========================================================================
+   LEGACY STYLES (kept for compatibility)
+   ========================================================================== */
+.workThumbnail img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.wTitle {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.catch {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+/* Video section (template) */
+.video-section {
+    padding: 60px 20px;
+    background: var(--bg-light);
+}
+
+.video-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Hide old elements */
+.link, .other1, .other2, .other3, .other4, .other5,
+.button-link, .displayLink, .back, .back-link {
+    display: none;
+}

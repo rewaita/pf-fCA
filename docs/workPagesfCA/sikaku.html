@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>しりとりかーどくん - Game | Rewaita Portfolio</title>
+    <link rel="stylesheet" href="wPstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="fixed-nav" id="fixedNav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">PORTFOLIO</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">HOME</a></li>
+                <li><a href="../index.html#game">GAME</a></li>
+                <li><a href="../index.html#graphic">GRAPHIC</a></li>
+                <li><a href="../index.html#music">MUSIC</a></li>
+                <li><a href="../index.html#other">OTHER</a></li>
+            </ul>
+            <div class="nav-hamburger" id="navHamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+    <div class="image-popup-overlay" id="imagePopup">
+        <button class="popup-close" id="popupClose">&times;</button>
+        <img src="" alt="Popup Image" class="popup-image" id="popupImage">
+        <div class="popup-nav">
+            <button class="popup-prev" id="popupPrev">&lt;</button>
+            <button class="popup-next" id="popupNext">&gt;</button>
+        </div>
+    </div>
+
+    <main class="work-container">
+        <div class="hero-section">
+            <div class="hero-bg">
+                <img src="../game/cubePuzzle/cpThumbnail.png" alt="Thumbnail">
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <span class="hero-category">game</span>
+                <h1 class="hero-title">しりとりかーどくん</h1>
+                <p class="hero-catch">大人と子供が対等に勝負できるしりとり×連想カードゲーム</p>
+            </div>
+        </div>
+        
+        <section class="info">
+            <div class="info-inner">
+                <h2 class="section-label">CONCEPT</h2>
+                <p class="concept">
+                    大人と子供の視点の違いから生まれるすれ違いや衝突を解決するべく、両者の対等な会話を生むために生まれた、気を使わず対等に勝負できるカードゲームです。<br>
+                    大人と子供それぞれの強みが生かされるような設計を行い、積極的にお互いの考えを知ることができるよう、対話を促すルールになっています。
+                </p>
+            </div>
+        </section>
+
+        <section class="slider-container">
+            <h2 class="gallery-title">GALLERY</h2>
+            <button class="leftB"><span>&lt;</span></button>
+            <div class="slider-wrapper">
+                <img src="../game/sikaku/sikaku1.png" class="slide" alt="発表スライド1/9" data-index="0">
+                <img src="../game/sikaku/sikaku2.png" class="slide" alt="発表スライド2/9" data-index="1">
+                <img src="../game/sikaku/sikaku3.png" class="slide" alt="発表スライド3/9" data-index="2">
+                <img src="../game/sikaku/sikaku4.png" class="slide" alt="発表スライド4/9" data-index="3">
+                <img src="../game/sikaku/sikaku5.png" class="slide" alt="発表スライド5/9" data-index="4">
+                <img src="../game/sikaku/sikaku6.png" class="slide" alt="発表スライド6/9" data-index="5">
+                <img src="../game/sikaku/sikaku7.png" class="slide" alt="発表スライド7/9" data-index="6">
+                <img src="../game/sikaku/sikaku8.png" class="slide" alt="発表スライド8/9" data-index="7">
+                <img src="../game/sikaku/sikaku9.png" class="slide" alt="発表スライド9/9" data-index="8">
+                <img src="../game/sikaku/test.png" class="slide" alt="箱外観" data-index="9">
+                <img src="../game/sikaku/box.png" class="slide" alt="箱中身" data-index="10">
+            </div>
+            <button class="rightB"><span>&gt;</span></button>
+            <p class="gallery-hint">クリックで拡大表示</p>
+        </section>
+
+        <section class="tech">
+            <div class="tech-inner">
+                <h2 class="section-label">DEVELOPMENT</h2>
+                <p class="tech-memo">
+                学部内サークルCREAMにてグループで作成し、主にルール設計を担当。<br>
+                しりとりかーどくんとは、しりとりと連想ゲームを組み合わせたカードゲームで、子供と大人、特に親子が対等に勝負できるようなルール設計になっています。<br>
+                カードには全部で65種類の簡単な図形や曖昧な形が描かれています。プレイヤーは手札に7枚、残りを山札として、1枚山札からめくって場に出してゲームを始めます。<br>
+                そこから、プレイヤーは自分の手札から1枚を選び、場に出ているカードに対してしりとりで続く言葉を考え、カードを重ねていきます。例えば、場に「丸」が出ているときに「ループ」を思いついたら、「ループ」を連想させるカードを選んで重ねます。<br>
+                これは早い者勝ちの勝負で、大人は知識量、子供は柔軟な発想力を生かして勝負します。先に手札が無くなった方があがって勝ちとなります。<br>
+                ここで、親子の会話を増やし、対話を促すルールとして、決闘ルールというものがあります。これは場に出されたカードに対して、他のプレイヤーが「それは違う！」と主張したときに発動するルールで、カードを出したプレイヤーは、なぜそのカードがしりとりで続く言葉を連想させるのかを説明しなければなりません。<br>
+                また、山札から1枚出して、そのカードでしりとり勝負を行い、負けたプレイヤーは手札が2枚増えてしまいます。<br>
+                このルールにより、子供の突拍子も無い発想や、大人しか知らない難しい内容に対してお互いに共有し、会話が生まれるようになっています。また、ある程度の納得感を持ってカードを出すように誘導し、秩序を保つ役割もあります。
+                </p>
+            </div>
+        </section>
+
+        <section class="workflow">
+            <h2 class="section-label light">GAME FLOW</h2>
+            <div class="workflow-container">
+                <div class="wf-track">
+                    <div class="wf-branch">
+                    <div class="wf-step">
+                        <div class="step-content">
+                            <span class="step-label">ゲーム開始前</span>
+                        </div>
+                        <div class="wf-popup">
+                            <img src="../game/sikaku/rule1.png" alt="rules">
+                            <h4>ゲーム開始前</h4>
+                            <p>手札を7枚、残りを山札として真ん中に置きます。</p>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <div class="wf-arrow"></div>
+
+                    <div class="wf-branch">
+                    <div class="wf-step">
+                        <div class="step-content">
+                            <span class="step-label">ゲーム開始</span>
+                        </div>
+                        <div class="wf-popup">
+                            <img src="../game/sikaku/rule2.png" alt="rules">
+                            <h4>ゲーム開始</h4>
+                            <p>最初の人を1人決め、その人が山札をめくり、絵柄から連想する言葉を言ってスタートします。</p>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <div class="wf-arrow"></div>
+
+                    <div class="wf-branch">
+                    <div class="wf-step">
+                        <div class="step-content">
+                            <span class="step-label">カードを出す</span>
+                        </div>
+                        <div class="wf-popup">
+                            <img src="../game/sikaku/rule3.png" alt="rules">
+                            <h4>早い者勝ちでカードを出す</h4>
+                            <p>ゲーム中は場にあるカードに対して、自分の手札のカードから、しりとりで続くような言葉を連想し、どんどんと出していきます。早い者勝ちで、連続で出すことも可能です。</p>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <div class="wf-arrow"></div>
+
+                    <div class="wf-branch">
+                        <div class="wf-step">
+                            <div class="step-content">
+                                <span class="step-label">詰まった時</span>
+                                
+                            </div>
+                            <div class="wf-popup">
+                                    <img src="../game/sikaku/rule4.png" alt="EASY,2x2x2blocks">
+                                    <h4>出せるカードがない時</h4>
+                                    <p>もし手札から出せるカードが見つからない時、いつでも山札から1枚手札に加えることができます。手札が増える代わり、自分の有利な文字へと誘導するチャンスでもあります。</p>
+                                </div>
+                        </div>
+                        <div class="wf-step">
+                            <div class="step-content">
+                                <span class="step-label">決闘ルール</span>        
+                            </div>
+                            <div class="wf-popup">
+                                <img src="../game/sikaku/rule5.png" alt="NORMAL,3x3x3blocks">
+                                <h4>他プレイヤーの出したカードに指摘する</h4>
+                                <p>他プレイヤーの出したカードは「ストップ」と指摘をすることができます。その場合、指摘者とカードを出した人で決闘を行います。<br>
+                                決闘では山札から1枚引き、そのカードを使って場のカードの続きを考える勝負をします。負けたプレイヤーは山札から2枚手札に加えます。<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wf-arrow"></div>
+
+                    <div class="wf-branch">
+                    <div class="wf-step">
+                        <div class="step-content">
+                            <span class="step-label">勝ち負け</span>
+                        </div>
+                        <div class="wf-popup">
+                            <img src="../game/sikaku/rule3.png" alt="rules">
+                            <h4>上がれば勝ち、残ったら負け</h4>
+                            <p>手札が無くなったら上がって勝ちとなります。もし３人以上の場合は最後の１人になるまでゲームを続け、残った人は負けとなります。</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="next-project">
+            <div class="next-project-inner">
+                <span class="next-label">NEXT PROJECT</span>
+                <a href="starEx.html" class="next-link">
+                    <span class="next-title">EX star seize</span>
+                    <span class="next-category">Game</span>
+                    <span class="next-arrow">→</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="site-footer">
+        <a href="../pfrewafca.html" class="footer-home">← ホームへ戻る</a>
+        <p class="footer-copy">© 2025 Rewaita Portfolio</p>
+    </footer>
+
+
+    <script>
+        // 固定ナビゲーション表示制御
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.getElementById('fixedNav');
+            const hamburger = document.getElementById('navHamburger');
+            let lastScroll = 0;
+            
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                if (currentScroll > 100) {
+                    nav.classList.add('visible');
+                    if (currentScroll > lastScroll && currentScroll > 300) {
+                        nav.classList.add('hidden');
+                    } else {
+                        nav.classList.remove('hidden');
+                    }
+                } else {
+                    nav.classList.remove('visible');
+                }
+                lastScroll = currentScroll;
+            });
+
+            // ハンバーガーメニュー
+            hamburger.addEventListener('click', () => {
+                nav.classList.toggle('menu-open');
+            });
+        });
+
+        // ギャラリースライダー
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slider-container .slide');
+            const totalSlides = slides.length;
+            let currentIndex = 0;
+
+            const leftButton = document.querySelector('.slider-container .leftB');
+            const rightButton = document.querySelector('.slider-container .rightB');
+            
+            const config = {
+                0: { z: 0, scale: 1.0, x: 0, opacity: 1.0, zIndex: 10 },
+                1: { z: 250, scale: 1.1, x: 400, opacity: 0.25, zIndex: 12 },
+                2: { z: 700, scale: 1.2, x: 700, opacity: 0.1, zIndex: 14 },
+                "-1": { z: -350, scale: 0.9, x: -200, opacity: 0.9, zIndex: 8 },
+                "-2": { z: -600, scale: 0.8, x: -350, opacity: 0.2, zIndex: 6 },
+            };
+
+            function updateSlider() {
+                slides.forEach((slide, index) => {
+                    let diff = index - currentIndex;
+                    if (diff > totalSlides / 2) diff -= totalSlides;
+                    else if (diff < -totalSlides / 2) diff += totalSlides;
+
+                    const absDiff = Math.abs(diff);
+                    if (absDiff <= 2) {
+                        const style = config[diff.toString()];
+                        slide.style.opacity = style.opacity;
+                        slide.style.zIndex = style.zIndex;
+                        slide.style.transform = `translateX(-50%) translateZ(${style.z}px) scale(${style.scale}) translateX(${style.x}px)`;
+                        slide.style.pointerEvents = (diff === 0) ? 'auto' : 'none';
+                    } else {
+                        slide.style.opacity = 0;
+                        slide.style.zIndex = 1;
+                        slide.style.transform = `translateX(-100%) translateZ(-1000px) scale(0)`;
+                        slide.style.pointerEvents = 'none';
+                    }
+                });
+            }
+
+            rightButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateSlider();
+            });
+
+            leftButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            });
+
+            // 画像クリックでポップアップ表示
+            slides.forEach(slide => {
+                slide.addEventListener('click', () => {
+                    openPopup(slide.src, parseInt(slide.dataset.index));
+                });
+            });
+
+            updateSlider();
+
+            // ポップアップ機能
+            const popup = document.getElementById('imagePopup');
+            const popupImage = document.getElementById('popupImage');
+            const popupClose = document.getElementById('popupClose');
+            const popupPrev = document.getElementById('popupPrev');
+            const popupNext = document.getElementById('popupNext');
+            let popupIndex = 0;
+            const slideSrcs = Array.from(slides).map(s => s.src);
+
+            function openPopup(src, index) {
+                popupIndex = index;
+                popupImage.src = src;
+                popup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closePopup() {
+                popup.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            popupClose.addEventListener('click', closePopup);
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) closePopup();
+            });
+
+            popupPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                popupIndex = (popupIndex - 1 + slideSrcs.length) % slideSrcs.length;
+                popupImage.src = slideSrcs[popupIndex];
+            });
+
+            popupNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                popupIndex = (popupIndex + 1) % slideSrcs.length;
+                popupImage.src = slideSrcs[popupIndex];
+            });
+
+            // キーボード操作
+            document.addEventListener('keydown', (e) => {
+                if (!popup.classList.contains('active')) return;
+                if (e.key === 'Escape') closePopup();
+                if (e.key === 'ArrowLeft') popupPrev.click();
+                if (e.key === 'ArrowRight') popupNext.click();
+            });
+        });
+
+        // ワークフロースライダー
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.querySelector('.wf-track');
+            const container = document.querySelector('.workflow-container');
+            const branches = document.querySelectorAll('.wf-branch');
+
+            function centerBranch(targetBranch) {
+                if (!targetBranch) return;
+                const containerWidth = container.offsetWidth;
+                const branchCenter = targetBranch.offsetLeft + (targetBranch.offsetWidth / 2);
+                
+                let targetPosition;
+                if (window.innerWidth <= 768) {
+                    // 画面右端から20%の位置 = 左端から80%の位置
+                    targetPosition = containerWidth * 0.8;
+                } else {
+                    // 通常は中央
+                    targetPosition = containerWidth / 2;
+                }
+                
+                const moveAmount = targetPosition - branchCenter - 40;
+                track.style.transform = `translateX(${moveAmount}px)`;
+            }
+
+            branches.forEach(branch => {
+                branch.addEventListener('click', () => centerBranch(branch));
+            });
+
+            // ウィンドウリサイズ時に再計算
+            window.addEventListener('resize', () => {
+                const activeBranch = document.querySelector('.wf-branch.active') || branches[0];
+                centerBranch(activeBranch);
+            });
+
+            if (branches.length > 0) {
+                requestAnimationFrame(() => centerBranch(branches[0]));
+            }
+        });
+    </script>
+</body>
+</html>

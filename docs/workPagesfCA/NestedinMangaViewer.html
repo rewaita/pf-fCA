@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nested in Manga - Book Viewer | Rewaita Portfolio</title>
+    <link rel="stylesheet" href="wPstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #050505;
+            overflow-x: hidden;
+        }
+        .viewer-container {
+            max-width: 1400px;
+            margin: 80px auto 0;
+            padding: 20px;
+            text-align: center;
+            min-height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .book-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            position: relative;
+            margin-bottom: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            background-color: #1a1a1a;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .page-img {
+            max-width: 48%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            background-color: white;
+            transition: opacity 0.3s ease;
+        }
+        .page-img.single {
+            max-width: 80%;
+        }
+        .nav-btn {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(40, 40, 40, 0.8);
+            color: #eee;
+            border: 1px solid #444;
+            padding: 20px 15px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-btn:hover:not(:disabled) {
+            background: var(--yelloww);
+            color: #000;
+            border-color: var(--yelloww);
+        }
+        .nav-btn:disabled {
+            opacity: 0.2;
+            cursor: default;
+        }
+        .left-btn { left: 20px; }
+        .right-btn { right: 20px; }
+        
+        .page-info {
+            font-family: 'Orbitron', sans-serif;
+            margin-top: 15px;
+            color: var(--yelloww);
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+            border-bottom: 1px solid transparent;
+        }
+        .back-link:hover {
+            color: var(--yelloww);
+            border-bottom: 1px solid var(--yelloww);
+        }
+
+        @media (max-width: 768px) {
+            .book-wrapper {
+                flex-direction: column;
+                gap: 10px;
+                padding: 5px;
+            }
+            .page-img {
+                max-width: 100%;
+                max-height: 45vh;
+            }
+            .nav-btn {
+                padding: 15px 10px;
+                font-size: 1.2rem;
+            }
+            .left-btn { left: 5px; }
+            .right-btn { right: 5px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="fixed-nav visible" id="fixedNav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">PORTFOLIO</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">HOME</a></li>
+                <li><a href="../index.html#game">GAME</a></li>
+                <li><a href="../index.html#graphic">GRAPHIC</a></li>
+                <li><a href="../index.html#music">MUSIC</a></li>
+                <li><a href="../index.html#other">OTHER</a></li>
+            </ul>
+            <div class="nav-hamburger" id="navHamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="viewer-container">
+        <div class="book-wrapper" id="bookWrapper">
+            <!-- Manga RTL: Right page comes first in original index order, then Left page -->
+            <img id="rightPage" src="" alt="Right Page" class="page-img">
+            <img id="leftPage" src="" alt="Left Page" class="page-img">
+        </div>
+        <div class="page-info" id="pageInfo">0 / 0</div>
+        <a href="NestedinManga.html" class="back-link">← 作品詳細に戻る</a>
+    </main>
+
+    <button class="nav-btn left-btn" id="btnLeft" title="Next (Left Arrow)">&lt;</button>
+    <button class="nav-btn right-btn" id="btnRight" title="Previous (Right Arrow)">&gt;</button>
+
+    <script>
+        const imageDir = "../graphicA/nestedInManga/KG/";
+        const images = [
+            "0NestedInManga.png",
+            ...Array.from({length: 15}, (_, i) => `1Nested${i+1}.png`),
+            ...Array.from({length: 15}, (_, i) => `2Aligned${i+1}.png`),
+            ...Array.from({length: 15}, (_, i) => `3patterned${i+1}.png`),
+            ...Array.from({length: 15}, (_, i) => `4circle${i+1}.png`),
+            ...Array.from({length: 15}, (_, i) => `5Rooted${i+1}.png`),
+            ...Array.from({length: 15}, (_, i) => `6typed${i+1}.png`),
+            ...Array.from({length: 15}, (_, i) => `7swayed${i+1}.png`),
+            ...Array.from({length: 15}, (_, i) => `8mixed${i+1}.png`)
+        ];
+
+        let currentSpreadIndex = 0; // 0 is cover, 1 is pp 1-2, 2 is pp 3-4, etc.
+
+        // Navigation controls
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.getElementById('fixedNav');
+            const hamburger = document.getElementById('navHamburger');
+            
+            // Hamburger menu
+            hamburger.addEventListener('click', () => {
+                nav.classList.toggle('menu-open');
+            });
+        });
+
+        function updateViewer() {
+            const leftImg = document.getElementById('leftPage');
+            const rightImg = document.getElementById('rightPage');
+            const info = document.getElementById('pageInfo');
+            const btnLeft = document.getElementById('btnLeft');
+            const btnRight = document.getElementById('btnRight');
+
+            if (currentSpreadIndex === 0) {
+                // Cover view (Right side in RTL)
+                leftImg.style.display = 'none';
+                rightImg.src = imageDir + images[0];
+                rightImg.style.display = 'block';
+                rightImg.classList.add('single');
+                info.innerText = `COVER (1 / ${images.length})`;
+                btnRight.disabled = true; // No "Back" from cover
+            } else {
+                leftImg.style.display = 'block';
+                rightImg.style.display = 'block';
+                rightImg.classList.remove('single');
+                
+                const indexNext = (currentSpreadIndex - 1) * 2 + 1;
+                const indexPrev = indexNext + 1;
+
+                // RTL: Even index on right, Odd index on left (based on images array indices)
+                // Logical: Page N is on Right, Page N+1 is on Left
+                rightImg.src = imageDir + images[indexNext];
+                if (indexPrev < images.length) {
+                    leftImg.src = imageDir + images[indexPrev];
+                    info.innerText = `PAGE ${indexNext + 1}-${indexPrev + 1} / ${images.length}`;
+                } else {
+                    leftImg.style.display = 'none';
+                    info.innerText = `PAGE ${indexNext + 1} / ${images.length}`;
+                }
+                btnRight.disabled = false;
+            }
+            
+            // Check if we can advance (to the left)
+            const nextCheckIndex = currentSpreadIndex === 0 ? 1 : (currentSpreadIndex * 2 + 1);
+            btnLeft.disabled = nextCheckIndex >= images.length;
+        }
+
+        document.getElementById('btnRight').addEventListener('click', () => {
+            if (currentSpreadIndex > 0) {
+                currentSpreadIndex--;
+                updateViewer();
+            }
+        });
+
+        document.getElementById('btnLeft').addEventListener('click', () => {
+            const nextCheckIndex = currentSpreadIndex === 0 ? 1 : (currentSpreadIndex * 2 + 1);
+            if (nextCheckIndex < images.length) {
+                currentSpreadIndex++;
+                updateViewer();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                if (currentSpreadIndex > 0) {
+                    currentSpreadIndex--;
+                    updateViewer();
+                }
+            } else if (e.key === 'ArrowLeft') {
+                const nextCheckIndex = currentSpreadIndex === 0 ? 1 : (currentSpreadIndex * 2 + 1);
+                if (nextCheckIndex < images.length) {
+                    currentSpreadIndex++;
+                    updateViewer();
+                }
+            }
+        });
+
+        // Initialize
+        updateViewer();
+    </script>
+</body>
+</html>

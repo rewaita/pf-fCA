@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUBE PUZZLE - Game | Rewaita Portfolio</title>
+    <link rel="stylesheet" href="wPstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="fixed-nav" id="fixedNav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">PORTFOLIO</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">HOME</a></li>
+                <li><a href="../index.html#game">GAME</a></li>
+                <li><a href="../index.html#graphic">GRAPHIC</a></li>
+                <li><a href="../index.html#music">MUSIC</a></li>
+                <li><a href="../index.html#other">OTHER</a></li>
+            </ul>
+            <div class="nav-hamburger" id="navHamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+    <div class="image-popup-overlay" id="imagePopup">
+        <button class="popup-close" id="popupClose">&times;</button>
+        <img src="" alt="Popup Image" class="popup-image" id="popupImage">
+        <div class="popup-nav">
+            <button class="popup-prev" id="popupPrev">&lt;</button>
+            <button class="popup-next" id="popupNext">&gt;</button>
+        </div>
+    </div>
+
+    <main class="work-container">
+        <div class="hero-section">
+            <div class="hero-bg">
+                <img src="../game/cubePuzzle/cpThumbnail.png" alt="Thumbnail">
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <span class="hero-category">GAME</span>
+                <h1 class="hero-title">CUBE PUZZLE</h1>
+                <p class="hero-catch">オブジェクトの親子関係を利用した3Dパズル</p>
+            </div>
+        </div>
+        
+        <section class="info">
+            <div class="info-inner">
+                <h2 class="section-label">CONCEPT</h2>
+                <p class="concept">
+                    ランダムに設定されたキューブ同士の親子関係によって構成される、複雑な立体パズルです。<br>
+                    記憶力・空間把握能力・論理的思考力が求められる、シンプルながら高難易度の設計となっています。<br><br>
+                    難易度はEASY・NORMAL・HARDの3段階で、それぞれ2x2x2、3x3x3、4x4x4の立方体パズルがランダムに生成されます。
+                    プレイヤーはマウスで回転させるキューブを選択し、WASDQEキーで90度ずつ回転操作が可能です。選択したキューブの子要素は黄色で表示され、正しい位置・向きにあるキューブは赤くハイライトされます。すべてのキューブが赤くなり、元の立方体の形に戻すことができればクリアとなります。
+                </p>
+            </div>
+        </section>
+
+        <section class="slider-container">
+            <h2 class="gallery-title">GALLERY</h2>
+            <button class="leftB"><span>&lt;</span></button>
+            <div class="slider-wrapper">
+                <img src="../game/cubePuzzle/cpTITLE.png" class="slide" alt="タイトル画面" data-index="0">
+                <img src="../game/cubePuzzle/cpSosa.png" class="slide" alt="操作説明" data-index="1">
+                <img src="../game/cubePuzzle/cpRotate.gif" class="slide" alt="回転操作" data-index="2">
+                <img src="../game/cubePuzzle/cpStructure.png" class="slide" alt="構造説明" data-index="3">
+                <img src="../game/cubePuzzle/cpHARD.png" class="slide" alt="HARD難易度" data-index="4">
+                <img src="../game/cubePuzzle/cpStages.png" class="slide" alt="ステージ一覧" data-index="5">
+                <img src="../game/cubePuzzle/cpGAME.png" class="slide" alt="ゲームプレイ" data-index="6">
+            </div>
+            <button class="rightB"><span>&gt;</span></button>
+            <p class="gallery-hint">クリックで拡大表示</p>
+        </section>
+
+        <section class="tech">
+            <div class="tech-inner">
+                <h2 class="section-label">DEVELOPMENT</h2>
+                <p class="tech-memo">
+                授業課題にて作成。Unity内の機能のいずれかを用いたゲーム制作が条件であったため、オブジェクト同士の親子関係を利用したパズルを考案しました。<br>
+                制作期間が限られていたため、シンプルな見た目に留めつつ、新鮮で複雑なパズル性を追求しました。
+                </p>
+                <div class="tech-specs">
+                    <div class="tech-item">
+                        <div class="tech-detail">
+                            <span class="tech-label">ツール</span>
+                            <span class="tech-value">Unity</span>
+                        </div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-detail">
+                            <span class="tech-label">使用言語</span>
+                            <span class="tech-value">C#</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="workflow">
+            <h2 class="section-label light">GAME FLOW</h2>
+            <div class="workflow-container">
+                <div class="wf-track">
+                    <div class="wf-branch">
+                    <div class="wf-step">
+                        <div class="step-content">
+                            <span class="step-label">タイトル</span>
+                        </div>
+                        <div class="wf-popup">
+                            <img src="../game/cubePuzzle/cpTITLE.png" alt="title screen">
+                            <h4>タイトル画面</h4>
+                            <p>ゲームの開始画面。「START」をクリックで次へ進みます。</p>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <div class="wf-arrow"></div>
+
+                    <div class="wf-branch">
+                    <div class="wf-step">
+                        <div class="step-content">
+                            <span class="step-label">難易度選択</span>
+                        </div>
+                        <div class="wf-popup">
+                            <img src="../game/cubePuzzle/cpSelect.png" alt="Select difficulty">
+                            <h4>ステージ選択</h4>
+                            <p>難易度を選択します。EASY,NORMAL,HARDの3段階があります。</p>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="wf-arrow"></div>
+
+                    <div class="wf-branch">
+                        <div class="wf-step">
+                            <div class="step-content">
+                                <span class="step-label">EASY</span>
+                                
+                            </div>
+                            <div class="wf-popup">
+                                    <img src="../game/cubePuzzle/cpEASYcube.png" alt="EASY,2x2x2blocks">
+                                    <h4>難易度:EASY</h4>
+                                    <p>2x2x2の計8個のキューブでパズルを行います。プレイ時間は5~30分</p>
+                                </div>
+                        </div>
+                        <div class="wf-step">
+                            <div class="step-content">
+                                <span class="step-label">NORMAL</span>        
+                            </div>
+                            <div class="wf-popup">
+                                <img src="../game/cubePuzzle/cpNORMALcube.png" alt="NORMAL,3x3x3blocks">
+                                <h4>難易度:NORMAL</h4>
+                                <p>3x3x3の計27個のキューブでパズルを行います。プレイ時間は30分~1時間</p>
+                            </div>
+                        </div>
+                        <div class="wf-step">
+                            <div class="step-content">
+                                <span class="step-label">HARD</span>                
+                            </div>
+                            <div class="wf-popup">
+                                <img src="../game/cubePuzzle/cpHARDcube.png" alt="HARD,4x4x4blocks">
+                                <h4>難易度:HARD</h4>
+                                <p>4x4x4の計64個のキューブでパズルを行います。プレイ時間は１時間〜</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wf-arrow"></div>
+
+                    <div class="wf-branch">
+                    <div class="wf-step">
+                        <div class="step-content">
+                            <span class="step-label">パズル生成</span>                
+                        </div>
+                        <div class="wf-popup">
+                            <img src="../game/cubePuzzle/cpGenerate.gif" alt="Result">
+                            <h4>パズル生成</h4>
+                            <p>自動でパズルを生成します。全てのキューブに対して、ランダムな順番の親子関係と6方向・90度または180度の回転が与えられ、パズルを形成します。<br>
+                            パズルが完成したら、画面下部に進捗率を表すバーが表示されます。
+                            </p>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="wf-arrow"></div>
+
+                    <div class="wf-branch">
+                    <div class="wf-step">
+                        <div class="step-content">
+                            <span class="step-label">パズル開始</span>                
+                        </div>
+                        <div class="wf-popup">
+                            <img src="../game/cubePuzzle/cpRotate.gif" alt="Result">
+                            <h4>パズル開始</h4>
+                            <p>キューブをマウスで選択し、WASDQEで回転させることができます。視点を左クリックしながらドラッグ、または矢印キーで動かすことができますが、操作の回転軸は変化しないので注意が必要です。<br>
+                                また、操作説明には記載していませんがoキーで難易度選択に戻る、pキーで選択したキューブ(緑のキューブ)を正しい向きにすることができます。
+                            </p>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="wf-arrow"></div>
+
+                    <div class="wf-branch">
+                    <div class="wf-step">
+                        <div class="step-content">
+                            <span class="step-label">ゲームクリア</span>                
+                        </div>
+                        <div class="wf-popup">
+                            <img src="path/to/result.png" alt="Result">
+                            <h4>ゲームクリア</h4>
+                            <p>クリアおめでとうございます。PLAYAGAINを押すと、難易度選択画面に戻ります。</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="play-section">
+            <div class="play-layer"></div>
+            <div class="play-inner">
+                <h2 class="play-title">PLAY NOW</h2>
+                <a href="https://unityroom.com/games/cubepuzzzzzzzle" target="_blank" class="play-button">
+                    <span class="play-icon">▶</span>
+                    <span class="play-text">ゲームをプレイ</span>
+                </a>
+                <p class="play-url">unityroom.com/games/cubepuzzzzzzzle</p>
+            </div>
+        </section>
+
+        <section class="next-project">
+            <div class="next-project-inner">
+                <span class="next-label">NEXT PROJECT</span>
+                <a href="sikaku.html" class="next-link">
+                    <span class="next-title">しりとりカードくん</span>
+                    <span class="next-category">game</span>
+                    <span class="next-arrow">→</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="site-footer">
+        <a href="../pfrewafca.html" class="footer-home">← ホームへ戻る</a>
+        <p class="footer-copy">© 2025 Rewaita Portfolio</p>
+    </footer>
+
+
+    <script>
+        // 固定ナビゲーション表示制御
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.getElementById('fixedNav');
+            const hamburger = document.getElementById('navHamburger');
+            let lastScroll = 0;
+            
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                if (currentScroll > 100) {
+                    nav.classList.add('visible');
+                    if (currentScroll > lastScroll && currentScroll > 300) {
+                        nav.classList.add('hidden');
+                    } else {
+                        nav.classList.remove('hidden');
+                    }
+                } else {
+                    nav.classList.remove('visible');
+                }
+                lastScroll = currentScroll;
+            });
+
+            // ハンバーガーメニュー
+            hamburger.addEventListener('click', () => {
+                nav.classList.toggle('menu-open');
+            });
+        });
+
+        // ギャラリースライダー
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slider-container .slide');
+            const totalSlides = slides.length;
+            let currentIndex = 0;
+
+            const leftButton = document.querySelector('.slider-container .leftB');
+            const rightButton = document.querySelector('.slider-container .rightB');
+            
+            const config = {
+                0: { z: 0, scale: 1.0, x: 0, opacity: 1.0, zIndex: 10 },
+                1: { z: 250, scale: 1.1, x: 400, opacity: 0.25, zIndex: 12 },
+                2: { z: 700, scale: 1.2, x: 700, opacity: 0.1, zIndex: 14 },
+                "-1": { z: -350, scale: 0.9, x: -200, opacity: 0.9, zIndex: 8 },
+                "-2": { z: -600, scale: 0.8, x: -350, opacity: 0.2, zIndex: 6 },
+            };
+
+            function updateSlider() {
+                slides.forEach((slide, index) => {
+                    let diff = index - currentIndex;
+                    if (diff > totalSlides / 2) diff -= totalSlides;
+                    else if (diff < -totalSlides / 2) diff += totalSlides;
+
+                    const absDiff = Math.abs(diff);
+                    if (absDiff <= 2) {
+                        const style = config[diff.toString()];
+                        slide.style.opacity = style.opacity;
+                        slide.style.zIndex = style.zIndex;
+                        slide.style.transform = `translateX(-50%) translateZ(${style.z}px) scale(${style.scale}) translateX(${style.x}px)`;
+                        slide.style.pointerEvents = (diff === 0) ? 'auto' : 'none';
+                    } else {
+                        slide.style.opacity = 0;
+                        slide.style.zIndex = 1;
+                        slide.style.transform = `translateX(-100%) translateZ(-1000px) scale(0)`;
+                        slide.style.pointerEvents = 'none';
+                    }
+                });
+            }
+
+            rightButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateSlider();
+            });
+
+            leftButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            });
+
+            // 画像クリックでポップアップ表示
+            slides.forEach(slide => {
+                slide.addEventListener('click', () => {
+                    openPopup(slide.src, parseInt(slide.dataset.index));
+                });
+            });
+
+            updateSlider();
+
+            // ポップアップ機能
+            const popup = document.getElementById('imagePopup');
+            const popupImage = document.getElementById('popupImage');
+            const popupClose = document.getElementById('popupClose');
+            const popupPrev = document.getElementById('popupPrev');
+            const popupNext = document.getElementById('popupNext');
+            let popupIndex = 0;
+            const slideSrcs = Array.from(slides).map(s => s.src);
+
+            function openPopup(src, index) {
+                popupIndex = index;
+                popupImage.src = src;
+                popup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closePopup() {
+                popup.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            popupClose.addEventListener('click', closePopup);
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) closePopup();
+            });
+
+            popupPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                popupIndex = (popupIndex - 1 + slideSrcs.length) % slideSrcs.length;
+                popupImage.src = slideSrcs[popupIndex];
+            });
+
+            popupNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                popupIndex = (popupIndex + 1) % slideSrcs.length;
+                popupImage.src = slideSrcs[popupIndex];
+            });
+
+            // キーボード操作
+            document.addEventListener('keydown', (e) => {
+                if (!popup.classList.contains('active')) return;
+                if (e.key === 'Escape') closePopup();
+                if (e.key === 'ArrowLeft') popupPrev.click();
+                if (e.key === 'ArrowRight') popupNext.click();
+            });
+        });
+
+        // ワークフロースライダー
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.querySelector('.wf-track');
+            const container = document.querySelector('.workflow-container');
+            const branches = document.querySelectorAll('.wf-branch');
+
+            function centerBranch(targetBranch) {
+                if (!targetBranch) return;
+                const containerWidth = container.offsetWidth;
+                const branchCenter = targetBranch.offsetLeft + (targetBranch.offsetWidth / 2);
+                
+                let targetPosition;
+                if (window.innerWidth <= 768) {
+                    // 画面右端から20%の位置 = 左端から80%の位置
+                    targetPosition = containerWidth * 0.8;
+                } else {
+                    // 通常は中央
+                    targetPosition = containerWidth / 2;
+                }
+                
+                const moveAmount = targetPosition - branchCenter - 40;
+                track.style.transform = `translateX(${moveAmount}px)`;
+            }
+
+            branches.forEach(branch => {
+                branch.addEventListener('click', () => centerBranch(branch));
+            });
+
+            // ウィンドウリサイズ時に再計算
+            window.addEventListener('resize', () => {
+                const activeBranch = document.querySelector('.wf-branch.active') || branches[0];
+                centerBranch(activeBranch);
+            });
+
+            if (branches.length > 0) {
+                requestAnimationFrame(() => centerBranch(branches[0]));
+            }
+        });
+    </script>
+</body>
+</html>

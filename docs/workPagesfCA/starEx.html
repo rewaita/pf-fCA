@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EX star seize - Game | Rewaita Portfolio</title>
+    <link rel="stylesheet" href="wPstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="fixed-nav" id="fixedNav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">PORTFOLIO</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">HOME</a></li>
+                <li><a href="../index.html#game">GAME</a></li>
+                <li><a href="../index.html#graphic">GRAPHIC</a></li>
+                <li><a href="../index.html#music">MUSIC</a></li>
+                <li><a href="../index.html#other">OTHER</a></li>
+            </ul>
+            <div class="nav-hamburger" id="navHamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+    <div class="image-popup-overlay" id="imagePopup">
+        <button class="popup-close" id="popupClose">&times;</button>
+        <img src="" alt="Popup Image" class="popup-image" id="popupImage">
+        <div class="popup-nav">
+            <button class="popup-prev" id="popupPrev">&lt;</button>
+            <button class="popup-next" id="popupNext">&gt;</button>
+        </div>
+    </div>
+
+    <main class="work-container">
+        <div class="hero-section">
+            <div class="hero-bg">
+                <img src="../game/StarExcersize/exstarsize.png" alt="Thumbnail">
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <span class="hero-category">game</span>
+                <h1 class="hero-title">EX star seize</h1>
+                <p class="hero-catch">スターエクササイズを利用した足で操作する防御アクションゲーム</p>
+            </div>
+        </div>
+        
+        <section class="info">
+            <div class="info-inner">
+                <h2 class="section-label">CONCEPT</h2>
+                <p class="concept">
+                    本作品は、エクササイズやリハビリテーションに利用される事を想定したゲームを作るというハッカソンで制作したゲームです。<br>
+                    ORPHE coreモジュールを利用し、足を動かす事で操作します。<br>
+                    コアが無い時はマウスモードで代用が可能です。<br>
+                </p>
+            </div>
+        </section>
+
+        <section class="slider-container">
+            <h2 class="gallery-title">GALLERY</h2>
+            <button class="leftB"><span>&lt;</span></button>
+            <div class="slider-wrapper">
+                <img src="../game/StarExcersize/exstarsize.png" class="slide" alt="あ" data-index="0">
+                <img src="../game/StarExcersize/games.gif" class="slide" alt="あ" data-index="1">
+                
+            </div>
+            <button class="rightB"><span>&gt;</span></button>
+            <p class="gallery-hint">クリックで拡大表示</p>
+        </section>
+
+        <section class="tech">
+            <div class="tech-inner">
+                <h2 class="section-label">DEVELOPMENT</h2>
+                <p class="tech-memo">
+                ORPHE coreハッカソンにて作成。copilotを利用したバイブコーディングにて1時間30分の制限時間の中作成しました。<br>
+                スターエクササイズは、足首の動きをするエクササイズで、中心に立ち、８方向に片足を出して、戻してを繰り返すものです。<br>
+                このゲームでは片足を伸ばすという動きを、敵の攻撃を防ぐためのシールドを展開する動きとして利用しています。<br>
+                </p>
+                <div class="tech-specs">
+                    <div class="tech-item">
+                        <div class="tech-detail">
+                            <span class="tech-label">ツール</span>
+                            <span class="tech-value">VSCode</span>
+                        </div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-detail">
+                            <span class="tech-label">使用言語</span>
+                            <span class="tech-value">HTML,CSS,js</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="play-section">
+            <div class="play-layer"></div>
+            <div class="play-inner">
+                <h2 class="play-title">PLAY NOW</h2>
+                <a href="../game/StarExcersize/exstarseize.html" target="_blank" class="play-button">
+                    <span class="play-icon">▶</span>
+                    <span class="play-text">ゲームをプレイ</span>
+                </a>
+                <p class="play-url">exstarseize.html</p>
+            </div>
+        </section>
+
+        <section class="next-project">
+            <div class="next-project-inner">
+                <span class="next-label">NEXT PROJECT</span>
+                <a href="tenkyu.html" class="next-link">
+                    <span class="next-title">天球</span>
+                    <span class="next-category">music</span>
+                    <span class="next-arrow">→</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="site-footer">
+        <a href="../pfrewafca.html" class="footer-home">← ホームへ戻る</a>
+        <p class="footer-copy">© 2025 Rewaita Portfolio</p>
+    </footer>
+
+
+    <script>
+        // 固定ナビゲーション表示制御
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.getElementById('fixedNav');
+            const hamburger = document.getElementById('navHamburger');
+            let lastScroll = 0;
+            
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                if (currentScroll > 100) {
+                    nav.classList.add('visible');
+                    if (currentScroll > lastScroll && currentScroll > 300) {
+                        nav.classList.add('hidden');
+                    } else {
+                        nav.classList.remove('hidden');
+                    }
+                } else {
+                    nav.classList.remove('visible');
+                }
+                lastScroll = currentScroll;
+            });
+
+            // ハンバーガーメニュー
+            hamburger.addEventListener('click', () => {
+                nav.classList.toggle('menu-open');
+            });
+        });
+
+        // ギャラリースライダー
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slider-container .slide');
+            const totalSlides = slides.length;
+            let currentIndex = 0;
+
+            const leftButton = document.querySelector('.slider-container .leftB');
+            const rightButton = document.querySelector('.slider-container .rightB');
+            
+            const config = {
+                0: { z: 0, scale: 1.0, x: 0, opacity: 1.0, zIndex: 10 },
+                1: { z: 250, scale: 1.1, x: 400, opacity: 0.25, zIndex: 12 },
+                2: { z: 700, scale: 1.2, x: 700, opacity: 0.1, zIndex: 14 },
+                "-1": { z: -350, scale: 0.9, x: -200, opacity: 0.9, zIndex: 8 },
+                "-2": { z: -600, scale: 0.8, x: -350, opacity: 0.2, zIndex: 6 },
+            };
+
+            function updateSlider() {
+                slides.forEach((slide, index) => {
+                    let diff = index - currentIndex;
+                    if (diff > totalSlides / 2) diff -= totalSlides;
+                    else if (diff < -totalSlides / 2) diff += totalSlides;
+
+                    const absDiff = Math.abs(diff);
+                    if (absDiff <= 2) {
+                        const style = config[diff.toString()];
+                        slide.style.opacity = style.opacity;
+                        slide.style.zIndex = style.zIndex;
+                        slide.style.transform = `translateX(-50%) translateZ(${style.z}px) scale(${style.scale}) translateX(${style.x}px)`;
+                        slide.style.pointerEvents = (diff === 0) ? 'auto' : 'none';
+                    } else {
+                        slide.style.opacity = 0;
+                        slide.style.zIndex = 1;
+                        slide.style.transform = `translateX(-100%) translateZ(-1000px) scale(0)`;
+                        slide.style.pointerEvents = 'none';
+                    }
+                });
+            }
+
+            rightButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateSlider();
+            });
+
+            leftButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            });
+
+            // 画像クリックでポップアップ表示
+            slides.forEach(slide => {
+                slide.addEventListener('click', () => {
+                    openPopup(slide.src, parseInt(slide.dataset.index));
+                });
+            });
+
+            updateSlider();
+
+            // ポップアップ機能
+            const popup = document.getElementById('imagePopup');
+            const popupImage = document.getElementById('popupImage');
+            const popupClose = document.getElementById('popupClose');
+            const popupPrev = document.getElementById('popupPrev');
+            const popupNext = document.getElementById('popupNext');
+            let popupIndex = 0;
+            const slideSrcs = Array.from(slides).map(s => s.src);
+
+            function openPopup(src, index) {
+                popupIndex = index;
+                popupImage.src = src;
+                popup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closePopup() {
+                popup.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            popupClose.addEventListener('click', closePopup);
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) closePopup();
+            });
+
+            popupPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                popupIndex = (popupIndex - 1 + slideSrcs.length) % slideSrcs.length;
+                popupImage.src = slideSrcs[popupIndex];
+            });
+
+            popupNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                popupIndex = (popupIndex + 1) % slideSrcs.length;
+                popupImage.src = slideSrcs[popupIndex];
+            });
+
+            // キーボード操作
+            document.addEventListener('keydown', (e) => {
+                if (!popup.classList.contains('active')) return;
+                if (e.key === 'Escape') closePopup();
+                if (e.key === 'ArrowLeft') popupPrev.click();
+                if (e.key === 'ArrowRight') popupNext.click();
+            });
+        });
+
+        // ワークフロースライダー
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.querySelector('.wf-track');
+            const container = document.querySelector('.workflow-container');
+            const branches = document.querySelectorAll('.wf-branch');
+
+            function centerBranch(targetBranch) {
+                if (!targetBranch) return;
+                const containerWidth = container.offsetWidth;
+                const branchCenter = targetBranch.offsetLeft + (targetBranch.offsetWidth / 2);
+                
+                let targetPosition;
+                if (window.innerWidth <= 768) {
+                    // 画面右端から20%の位置 = 左端から80%の位置
+                    targetPosition = containerWidth * 0.8;
+                } else {
+                    // 通常は中央
+                    targetPosition = containerWidth / 2;
+                }
+                
+                const moveAmount = targetPosition - branchCenter - 40;
+                track.style.transform = `translateX(${moveAmount}px)`;
+            }
+
+            branches.forEach(branch => {
+                branch.addEventListener('click', () => centerBranch(branch));
+            });
+
+            // ウィンドウリサイズ時に再計算
+            window.addEventListener('resize', () => {
+                const activeBranch = document.querySelector('.wf-branch.active') || branches[0];
+                centerBranch(activeBranch);
+            });
+
+            if (branches.length > 0) {
+                requestAnimationFrame(() => centerBranch(branches[0]));
+            }
+        });
+    </script>
+</body>
+</html>
